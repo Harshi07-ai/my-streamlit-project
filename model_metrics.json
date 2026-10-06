@@ -1,0 +1,91 @@
+{
+    "best_model_name": "Gradient Boosting Regressor",
+    "metrics_summary": [
+        {
+            "model": "Persistence Baseline (Lag-1)",
+            "mae": 4.132,
+            "rmse": 5.821,
+            "r2": 0.9096,
+            "overpredict_pct": 45.62,
+            "underpredict_pct": 45.7,
+            "exact_pct": 8.68,
+            "mean_overprediction_rides": 4.53,
+            "mean_underprediction_rides": 4.52
+        },
+        {
+            "model": "Historical Mean Baseline",
+            "mae": 2.973,
+            "rmse": 6.449,
+            "r2": 0.8891,
+            "overpredict_pct": 47.72,
+            "underpredict_pct": 49.02,
+            "exact_pct": 3.27,
+            "mean_overprediction_rides": 2.65,
+            "mean_underprediction_rides": 3.49
+        },
+        {
+            "model": "Random Forest Regressor",
+            "mae": 2.781,
+            "rmse": 3.92,
+            "r2": 0.959,
+            "overpredict_pct": 50.49,
+            "underpredict_pct": 49.51,
+            "exact_pct": 0.0,
+            "mean_overprediction_rides": 2.81,
+            "mean_underprediction_rides": 2.75
+        },
+        {
+            "model": "Gradient Boosting Regressor",
+            "mae": 2.685,
+            "rmse": 3.564,
+            "r2": 0.9661,
+            "overpredict_pct": 51.02,
+            "underpredict_pct": 48.98,
+            "exact_pct": 0.0,
+            "mean_overprediction_rides": 2.67,
+            "mean_underprediction_rides": 2.7
+        }
+    ],
+    "feature_names": [
+        "hour",
+        "minute",
+        "day_of_week",
+        "weekend",
+        "rush_hour",
+        "sin_hour",
+        "cos_hour",
+        "sin_day",
+        "cos_day",
+        "historical_demand",
+        "temperature",
+        "rainfall",
+        "recent_cancellation_rate",
+        "event_indicator",
+        "previous_15min_demand",
+        "previous_30min_demand",
+        "previous_1hr_demand",
+        "rolling_mean_4",
+        "rolling_std_4",
+        "demand_momentum",
+        "event_in_downtown",
+        "rain_x_rush_hour",
+        "rain_x_cancellation",
+        "zone_downtown",
+        "zone_airport",
+        "zone_railway_station",
+        "zone_it_park",
+        "zone_residential_area",
+        "zone_shopping_district",
+        "zone_university_area",
+        "zone_industrial_area",
+        "weather_clear",
+        "weather_cloudy",
+        "weather_rainy",
+        "weather_stormy"
+    ],
+    "n_train_samples": 33792,
+    "n_test_samples": 8448,
+    "evaluation_notes": {
+        "why_rmse_not_sufficient": "RMSE penalizes large errors quadratically, making it sensitive to outliers. However, in driver positioning, a steady 3-ride error across 10 zones (high operational cost) might produce a lower RMSE than a single 15-ride surge error in Downtown. Furthermore, RMSE treats overprediction (driver idle time and fuel waste) and underprediction (lost fares and long passenger wait times) symmetrically, whereas their business consequences are asymmetric. MAE and directional error (over vs under) are essential complementary metrics."
+    }
+}
